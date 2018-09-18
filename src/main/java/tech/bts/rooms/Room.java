@@ -7,10 +7,11 @@ public class Room {
 
     public String name;
     public List<Room> connectedRooms;
+    public boolean exit;
 
     public Room (String name){
         this.name = name;
-        //this.connectedRooms = new ArrayList<Room>();
+        this.exit = false;
     }
 
     @Override

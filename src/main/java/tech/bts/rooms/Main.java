@@ -15,8 +15,11 @@ public class Main {
 
             currentRoom = moveToNextRoom(currentRoom);
 
+            if (currentRoom.exit){
+                System.out.println("Congrats, you found the exit!");
+                break;
+            }
         }
-
     }
 
     /** Creates the rooms, links them and returns the initial room */
@@ -27,6 +30,8 @@ public class Main {
         Room purple = new Room("purple");
         Room yellow = new Room("yellow");
         Room white = new Room("white");
+
+        white.exit = true;
 
         red.connectedRooms = Arrays.asList(green);
         green.connectedRooms = Arrays.asList(red, blue, purple);
