@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
 
         Room currentRoom = prepareRooms();
-        Scanner input = new Scanner(System.in);
 
         while (true) {
 
@@ -21,7 +20,7 @@ public class Main {
     }
 
     /** Creates the rooms, links them and returns the initial room */
-    private static Room prepareRooms () {
+    private static Room prepareRooms() {
         Room red = new Room("red");
         Room green = new Room("green");
         Room blue = new Room("blue");
@@ -38,8 +37,9 @@ public class Main {
 
         return red;
     }
+
     /** Displays where you are and where you can go */
-    private static void displaySituation (Room currentRoom) {
+    private static void displaySituation(Room currentRoom) {
         System.out.println("You are now in: " + currentRoom);
         System.out.println("You can go to: ");
         for (Room room : currentRoom.connectedRooms) {
@@ -48,20 +48,24 @@ public class Main {
     }
 
     /** Reads the user choice and moves to there */
-    private static Room moveToNextRoom (Room currentRoom) {
+    private static Room moveToNextRoom(Room currentRoom) {
         Scanner input = new Scanner(System.in);
         System.out.println("Where do you want to go?");
         String nextRoom = input.nextLine();
+        Room destination = null;
 
         for (Room room : currentRoom.connectedRooms) {
             if (nextRoom.equals(room.name)) {
                 System.out.println("OK, let's go to " + room);
-                currentRoom = room;
+                destination = room;
             }
         }
 
-        return currentRoom;
+        if (destination == null) {
+            System.out.println("You can't go to " + nextRoom);
+        } else {
+            currentRoom = destination;
+        }
+    return currentRoom;
     }
-
-
 }
